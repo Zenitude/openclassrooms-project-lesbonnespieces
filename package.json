@@ -4,8 +4,9 @@
   "description": "Support de Code pour le cours OpenClassrooms Creez des pages web dynamiques avec javascript",
   "main": ".scripts/pieces.js",
   "scripts": {
-    "start": "http-server",
-    "dev": "http-server"
+    "start": "json-server --port 8081 --no-cors db.json",
+    "dev": "http-server",
+    "lint": "eslint scripts/*.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,11 @@
   "homepage": "https://github.com/OpenClassrooms-Student-Center/7697016-Front-End.1#readme",
   "dependencies": {
     "chart.js": "^4.2.1",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "json-server": "^0.17.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "eslint": "^8.34.0"
   }
 }

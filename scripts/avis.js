@@ -1,5 +1,6 @@
+/* global Chart */
 export function displayCommentary() {
-    
+
     const buttonsAvis = document.querySelectorAll(".fiches article button");
 
     buttonsAvis.forEach(button => {
@@ -10,14 +11,14 @@ export function displayCommentary() {
             let comments = window.localStorage.getItem("comments");
 
             if(comments === null) {
-                const response = await fetch(`http://localhost:8081/pieces/${id}/avis`)
+                const response = await fetch(`http://localhost:8081/pieces/${id}/avis`);
                 comments = await response.json();
                 window.localStorage.setItem(`commentary-piece-${id}`, JSON.stringify(comments));
             } else {
                 comments = JSON.parse(comments);
             }
 
-            displayComments(infosPiece, comments)
+            displayComments(infosPiece, comments);
              
         });
     });
@@ -25,10 +26,10 @@ export function displayCommentary() {
 
 export function displayComments(pieceElement, comments) {
     comments.forEach(com => {
-        const commentElement = document.createElement('p');
+        const commentElement = document.createElement("p");
         commentElement.innerHTML += `<b>${com.user}:</b> ${com.commentary} (${com.nbStars} étoiles) <br><br>`;
         pieceElement.appendChild(commentElement);
-    })    
+    });    
 }
 
 export function sendNewCommentary() {
@@ -42,7 +43,7 @@ export function sendNewCommentary() {
             user: event.target.querySelector("[name=user").value,
             commentary: event.target.querySelector("[name=commentary]").value,
             nbStars: parseInt(event.target.querySelector("[name=nbStars]").value),
-         };
+        };
 
         const chargeUtile = JSON.stringify(comments);
 
@@ -52,11 +53,11 @@ export function sendNewCommentary() {
             body: chargeUtile
         });
     });
- }
+}
  
 
 export async function previewComments() {
-    const pieces = await fetch(`http://localhost:8081/pieces`).then(res => res.json());
+    const pieces = await fetch("http://localhost:8081/pieces").then(res => res.json());
         
     // console.log(comments)
     const namesPieces = [];
@@ -76,14 +77,14 @@ export async function previewComments() {
                 nb_comments[i] += 1;
                 nb_stars[i] += parseInt(infos.nbStars);
             }
-        })
+        });
     }
 
     for(let i = 0 ; i < nb_comments.length ; i++) {
         avgStars.push((nb_stars[i] / nb_comments[i]).toFixed(2));
     }
 
-    console.log(avgStars)
+    console.log(avgStars);
 
     const data = {
         labels: namesPieces,
@@ -92,13 +93,13 @@ export async function previewComments() {
             data: avgStars,
             backgroundColor: "rgba(255, 230, 0, 1)" // couleur jaune
         }],
-     };
+    };
 
     /* Preview comments */
     const graph = new Chart(
-        document.getElementById('graph-comments'), 
+        document.getElementById("graph-comments"), 
         {
-            type: 'bar',
+            type: "bar",
             data: data,
             options: {
                 scales: {
