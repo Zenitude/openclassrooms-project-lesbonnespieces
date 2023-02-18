@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Les Bonnes Pièces</title>
+		<link rel="stylesheet" href="./styles/styles.css">
+		<script src="node_modules/chart.js/dist/chart.umd.js" defer></script>
+		<script type="module" src="./scripts/pieces.js" defer></script>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<img src="./images/logo-les-bonnes-pieces.png" alt="LOGO">
+				<h1>Les Bonnes Pièces</h1>
+			</header>
+			<main>
+				<!-- Menu de recherche -->
+				<section class="filtersAndComs">
+					<div class="filters">
+						<h3>Filtres</h3>
+						<button class="btn-all-pieces">Afficher toutes les pièces</button>
+
+						<button class="btn-trier-asc">Trier par prix croissant</button>
+			
+						<button class="btn-trier-desc">Trier par prix décroissant</button>
+					
+						<button class="btn-filtrer">Filtrer les pièces non abordables</button>
+				
+						<button class="btn-filtrer-desc">Filtrer les pièces avec description</button>
+					
+						<div class="maxPrice">
+							<label for="maxPrice">Prix maximum : </label><br>
+							<input type="range" min="0" max="60" step="5" value="60" id="maxPrice">
+							<span class="value">60 €</span>
+						</div>
+					</div>
+					<form class="form-coms">
+						<h3>Ajouter un avis</h3>
+						<div>
+							<label for="piece-id">Identifiant de la pièce :</label><br>
+							<input type="number" name="piece-id" id="piece-id"><br>
+						</div>
+						<div>
+							<label for="nbStars">Nombre d'étoiles :</label><br>
+							<input type="number" name="nbStars" id="nbStars" min="0" max="5" value="0"><br>
+						</div>
+						<div>
+							<label for="user">Nom d'utilisateur :</label><br>
+							<input type="text" name="user" id="user"><br>
+						</div>
+						<div>
+							<label for="commentary">Avis :</label><br>
+							<input type="text" name="commentary" id="commentary"><br>
+						</div>
+						<button>Envoyer</button>
+					</form>
+					<div class="updatePieces">
+						<h3>Données</h3>
+						<button class="btn-update">Mettre à jour les pièces</button>
+					</div>
+					<div class="preview-comments">
+						<h3>Moyenne des avis</h3>
+						<canvas id="graph-comments" width="260" height="260"></canvas>
+					</div>
+				</section>
+
+				<!-- Fiches produits -->
+				<section class="fiches">
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
